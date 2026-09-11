@@ -2,6 +2,9 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score
 
 # Import the Dataset
 DATA_PATH = "data/Pokemon.csv"
@@ -60,3 +63,41 @@ plt.tight_layout()
 
 plt.savefig("images/average_attack_by_type.png")
 plt.show()
+
+
+# Select the model inputs and output
+feature_columns = ["HP", "Attack", "Defense", "Sp. Atk", "Sp. Def", "Speed"]
+X = pokemon[feature_columns]
+y = pokemon["Legendary"]
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.2,
+    random_state=42,
+    stratify=y,
+)
+
+# Create and train a decision tree model
+model = DecisionTreeClassifier(max_depth=3, random_state=42)
+model.fit(X_train, y_train)
+
+# Make predictions
+predictions = model.predict(X_test)
+
+# Evaluate the predictions
+accuracy = accuracy_score(y_test, predictions)
+
+print("\nModel accuracy:")
+print(round(accuracy, 2))
+
+# Compare some actual values with the model predictions
+prediction_results = pd.DataFrame(
+    {
+        "Actual": y_test,
+        "Predicted": predictions,
+    }
+)
+print("\nFirst 10 model predictions:")
+print(prediction_results.head(10))
