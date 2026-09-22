@@ -1,5 +1,9 @@
 # Pokémon Data Analysis
 
+# Part 2: GitHub Actions CI status
+
+[![Tests](https://github.com/Zilu-jn/pokemon-data-analysis/actions/workflows/tests.yml/badge.svg)](https://github.com/Zilu-jn/pokemon-data-analysis/actions/workflows/tests.yml)
+
 ## About the Project 
 
 This project uses Python to explore Pokémon statistics. I looked at
@@ -33,6 +37,11 @@ Run the Polars analysis:
 ```bash
 python polars_analysis.py
 ```
+## Part 1: Test results
+
+The project has four unit tests and one complete workflow test. All five pass:
+
+![Five tests passing](images/tests_passed.png)
 
 ## What I Did
 
