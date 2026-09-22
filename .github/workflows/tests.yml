@@ -1,0 +1,28 @@
+# Part 2: CI workflow — run tests automatically on GitHub
+name: Tests
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Get the project code
+      - uses: actions/checkout@v6
+
+      # Use the same Python version as the local Conda environment
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      # Install the packages listed by the project
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      # Part 1: Run unit and system tests
+      - name: Run tests
+        run: python -m pytest -q

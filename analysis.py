@@ -6,10 +6,16 @@ from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 
+from pokemon_pipeline import (
+    load_pokemon_data,
+    calculate_average_attack_by_type,
+    filter_strong_pokemon,
+)
+
 # Import the Dataset
 DATA_PATH = "data/Pokemon.csv"
 
-pokemon = pd.read_csv(DATA_PATH)
+pokemon = load_pokemon_data(DATA_PATH)
 
 # Inspect the Data
 print("First five rows:")
@@ -35,7 +41,7 @@ print("\nNumber of duplicate rows:")
 print(pokemon.duplicated().sum())
 
 # Filtering Pokémon with Attack of 120 or higher
-strong_pokemon = pokemon[pokemon["Attack"] >= 120]
+strong_pokemon = filter_strong_pokemon(pokemon)
 print("\nPokémon with Attack of 120 or higher:")
 print(strong_pokemon[["Name", "Type 1", "Attack"]].head(10))
 
@@ -47,7 +53,7 @@ pokemon_count_by_type = pokemon.groupby("Type 1")["Name"].count()
 print("\nNumber of Pokémon by primary type:")
 print(pokemon_count_by_type)
 
-average_attack_by_type = pokemon.groupby("Type 1")["Attack"].mean()
+average_attack_by_type = calculate_average_attack_by_type(pokemon)
 print("\nAverage Attack by primary type:")
 print(average_attack_by_type.round(2))
 

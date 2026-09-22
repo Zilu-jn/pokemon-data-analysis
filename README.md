@@ -15,8 +15,8 @@ dataset from Kaggle. It has 800 rows and 13 columns.
 ## Setup
 
 ```bash
-conda create --prefix ./.venv python=3.12 -y
-conda activate ./.venv
+conda create -n pokemon python=3.12 pip -y
+conda activate pokemon
 python -m pip install -r requirements.txt
 ```
 
