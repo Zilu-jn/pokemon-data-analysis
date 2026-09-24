@@ -2,6 +2,12 @@
 
 # Part 2: GitHub Actions CI status
 
+## Three Successful CI Runs
+
+The GitHub Actions workflow ran successfully three times.
+
+![Three successful GitHub Actions runs](images/three_successful_runs.png)
+
 [![Tests](https://github.com/Zilu-jn/pokemon-data-analysis/actions/workflows/tests.yml/badge.svg)](https://github.com/Zilu-jn/pokemon-data-analysis/actions/workflows/tests.yml)
 
 ## About the Project 
