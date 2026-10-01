@@ -128,3 +128,34 @@ The red lines show the longer model-training code that was removed. The green
 lines show the new function call.
 
 ![Refactoring commit diff](images/refactoring_diff.png)
+
+## Repository A - Week 4: Docker and Containerization
+
+### Build the Docker Image
+
+```bash
+docker build -t pokemon-analysis:week4 .
+```
+
+### Run the Docker Container
+
+```bash
+docker run --rm pokemon-analysis:week4
+```
+
+### What I Learned
+
+The Dockerfile creates a reproducible Python 3.12 environment, installs the
+project dependencies, copies the analysis code and dataset, and runs the
+Pokémon analysis automatically.
+
+The `.dockerignore` file prevents unnecessary files from being copied into the
+Docker image. The container completed successfully and produced the same model
+accuracy of 0.93.
+
+### Docker Evidence
+
+The screenshot below shows the completed container, its successful exit code,
+and the analysis output.
+
+![Successful Docker image and container run](images/docker_success.png)

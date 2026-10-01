@@ -1,0 +1,11 @@
+# Repository A - W4: Files Docker does not need
+.git
+.venv
+__pycache__
+.pytest_cache
+.vscode
+notebooks
+images
+Pokemon.csv
+*.pyc
+.DS_Store
