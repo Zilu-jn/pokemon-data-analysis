@@ -10,6 +10,17 @@ The GitHub Actions workflow ran successfully three times.
 
 [![Tests](https://github.com/Zilu-jn/pokemon-data-analysis/actions/workflows/tests.yml/badge.svg)](https://github.com/Zilu-jn/pokemon-data-analysis/actions/workflows/tests.yml)
 
+## Repository A - W4: Enhanced Continuous Integration
+
+The GitHub Actions workflow now tests the project with Python 3.11 and
+Python 3.12. Each CI job installs the dependencies, checks formatting with
+Black, checks code quality with flake8, and runs all tests.
+
+The workflow runs on pushes, pull requests, a weekly schedule, and manual
+workflow requests.
+
+![Successful CI matrix and code quality checks](images/ci_matrix_checks.png)
+
 ## About the Project 
 
 This project uses Python to explore Pokémon statistics. I looked at
