@@ -4,6 +4,7 @@ from pokemon_pipeline import (
     load_pokemon_data,
     calculate_average_attack_by_type,
     filter_strong_pokemon,
+    train_legendary_model,
 )
 
 
@@ -86,3 +87,14 @@ def test_complete_analysis():
     assert "Dataset shape:" in result.stdout
     assert "Model accuracy:" in result.stdout
     assert (project_folder / "images/average_attack_by_type.png").is_file()
+
+
+# Repository A - W4: Test the refactored model function
+def test_train_legendary_model():
+    pokemon = load_pokemon_data()
+
+    accuracy, prediction_results = train_legendary_model(pokemon)
+
+    assert 0 <= accuracy <= 1
+    assert len(prediction_results) == 160
+    assert prediction_results.columns.tolist() == ["Actual", "Predicted"]
