@@ -27,6 +27,22 @@ This project uses Python to explore Pokémon statistics. I looked at
 Pokémon types and Attack values. I also used a decision tree to predict
 whether a Pokémon is Legendary.
 
+## Problem Statement
+
+This project helps Pokémon players compare offensive strength across primary
+types and investigate whether base statistics can help identify Legendary
+Pokémon. The results can support simple team-building and Pokémon comparison
+decisions.
+
+## Repository A - W4: Data Quality Decisions
+
+- The dataset has 386 missing `Type 2` values. These values represent Pokémon
+  that have only one type, so I kept them as meaningful missing values.
+- The dataset has no fully duplicated rows.
+- I used the IQR method to identify 7 unusual Attack values.
+- I reviewed these records and kept them because they represent legitimately
+  powerful Pokémon rather than data-entry errors.
+
 ## Dataset
 
 I used the
@@ -56,9 +72,8 @@ python polars_analysis.py
 ```
 ## Part 1: Test results
 
-The project has four unit tests and one complete workflow test. All five pass:
-
-![Five tests passing](images/tests_passed.png)
+The project has six unit tests and one complete workflow test. All seven pass:
+![Seven tests passing](images/seven_tests_passed.png)
 
 ## What I Did
 
@@ -81,6 +96,8 @@ The project has four unit tests and one complete workflow test. All five pass:
 
 The Legendary groups are not balanced, so accuracy does not explain
 everything about the model.
+
+- The IQR method identified 7 Attack outliers. They were retained because they are valid high-powered Pokémon.
 
 ## Visualization
 

@@ -7,6 +7,7 @@ from pokemon_pipeline import (
     calculate_average_attack_by_type,
     filter_strong_pokemon,
     train_legendary_model,
+    find_attack_outliers,
 )
 
 # Import the Dataset
@@ -36,6 +37,15 @@ print(pokemon.isna().sum())
 
 print("\nNumber of duplicate rows:")
 print(pokemon.duplicated().sum())
+
+# Repository A - W4: Review Attack outliers before deciding how to treat them
+attack_outliers = find_attack_outliers(pokemon)
+
+print("\nNumber of Attack outliers:")
+print(len(attack_outliers))
+
+print("\nAttack outlier examples:")
+print(attack_outliers[["Name", "Type 1", "Attack"]].head(10))
 
 # Filtering Pokémon with Attack of 120 or higher
 strong_pokemon = filter_strong_pokemon(pokemon)

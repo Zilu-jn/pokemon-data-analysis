@@ -23,6 +23,21 @@ def filter_strong_pokemon(
     return pokemon[pokemon["Attack"] >= minimum_attack]
 
 
+# Repository A - W4: Find unusual Attack values with the IQR method
+def find_attack_outliers(pokemon: pd.DataFrame) -> pd.DataFrame:
+    """Return Pokémon whose Attack values are outside the IQR limits."""
+    first_quartile = pokemon["Attack"].quantile(0.25)
+    third_quartile = pokemon["Attack"].quantile(0.75)
+    iqr = third_quartile - first_quartile
+
+    lower_limit = first_quartile - 1.5 * iqr
+    upper_limit = third_quartile + 1.5 * iqr
+
+    return pokemon[
+        (pokemon["Attack"] < lower_limit) | (pokemon["Attack"] > upper_limit)
+    ]
+
+
 # Repository A - W4: Refactoring - extract model training into a function
 def train_legendary_model(pokemon: pd.DataFrame):
     """Train a decision tree and return its accuracy and predictions."""

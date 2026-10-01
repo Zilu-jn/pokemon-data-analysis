@@ -5,6 +5,7 @@ from pokemon_pipeline import (
     calculate_average_attack_by_type,
     filter_strong_pokemon,
     train_legendary_model,
+    find_attack_outliers,
 )
 
 
@@ -62,6 +63,22 @@ def test_filter_strong_pokemon():
     result = filter_strong_pokemon(pokemon)
 
     assert result["Name"].tolist() == ["Dragonite"]
+
+
+# Repository A - W4: Test Attack outlier detection
+def test_find_attack_outliers():
+    import pandas as pd
+
+    pokemon = pd.DataFrame(
+        {
+            "Name": ["A", "B", "C", "D", "Powerful"],
+            "Attack": [10, 11, 12, 13, 100],
+        }
+    )
+
+    result = find_attack_outliers(pokemon)
+
+    assert result["Name"].tolist() == ["Powerful"]
 
 
 # Part 1: System/integration test — run the complete analysis
