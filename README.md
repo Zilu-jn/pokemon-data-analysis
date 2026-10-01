@@ -84,3 +84,36 @@ Both libraries produced the same grouped results. For 1,000 grouping
 operations, Pandas took 0.1161 seconds and Polars took 0.2133 seconds.
 
 Pandas was faster in this small test, but this dataset only has 800 rows.
+
+## Repository A - Week 4: Refactoring and Code Quality
+
+### What I Changed
+
+I moved the decision tree training code from `analysis.py` into a reusable
+function named `train_legendary_model()` in `pokemon_pipeline.py`.
+
+I also added a new test for the refactored function.
+
+### Why I Changed It
+
+The change makes `analysis.py` shorter and easier to read. The model training
+code can now be reused and tested separately.
+
+### How I Verified It
+
+I used the following commands:
+
+```bash
+python -m pytest -q
+black --check analysis.py pokemon_pipeline.py test
+flake8 analysis.py pokemon_pipeline.py test
+```
+
+All six tests passed. Black and flake8 also passed.
+
+### Before-and-After Refactoring Evidence
+
+The red lines show the longer model-training code that was removed. The green
+lines show the new function call.
+
+![Refactoring commit diff](images/refactoring_diff.png)
