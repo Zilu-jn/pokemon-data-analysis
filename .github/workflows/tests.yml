@@ -1,7 +1,16 @@
-# Part 2: CI workflow — run tests automatically on GitHub
+# Repository A - W4: Automated tests and code quality checks
 name: Tests
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+
+  # Repository A - W4: Run CI automatically every Monday
+  schedule:
+    - cron: "0 12 * * 1"
+
+  # Repository A - W4: Allow a manual CI run from GitHub
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -10,19 +19,35 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    # Repository A - W4: Test with two Python versions
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+
     steps:
       # Get the project code
-      - uses: actions/checkout@v6
+      - name: Check out repository
+        uses: actions/checkout@v6
 
-      # Use the same Python version as the local Conda environment
-      - uses: actions/setup-python@v6
+      # Install the Python version selected by the matrix
+      - name: Set up Python
+        uses: actions/setup-python@v6
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python-version }}
 
       # Install the packages listed by the project
       - name: Install dependencies
         run: python -m pip install -r requirements.txt
 
-      # Part 1: Run unit and system tests
+      # Repository A - W4: Check Python formatting
+      - name: Check formatting with Black
+        run: black --check analysis.py pokemon_pipeline.py polars_analysis.py test
+
+      # Repository A - W4: Check Python code quality
+      - name: Check code with flake8
+        run: flake8 analysis.py pokemon_pipeline.py polars_analysis.py test
+
+      # Repository A - W4: Run unit and system tests
       - name: Run tests
         run: python -m pytest -q
