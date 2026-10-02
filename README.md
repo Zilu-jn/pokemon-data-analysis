@@ -115,6 +115,8 @@ Pandas was faster in this small test, but this dataset only has 800 rows.
 
 ## Repository A - Week 4: Refactoring and Code Quality
 
+> **Refactoring Motto:** “Refactor used Clean Code — it’s super effective!”
+
 ### What I Changed
 
 I moved the decision tree training code from `analysis.py` into a reusable
